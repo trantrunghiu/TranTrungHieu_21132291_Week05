@@ -1,0 +1,187 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+.navbar {
+    background-color: #4b0082;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    font-family: 'Lexend', sans-serif; /* Font đoạn văn */
+    font-weight: 400; /* Font thường */
+}
+.navbar .logo {
+    display: flex;
+    align-items: center;
+}
+.navbar .logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+.navbar .menu {
+    display: flex;
+    align-items: center;
+}
+.navbar .menu > div {
+    margin-left: 20px;
+    position: relative;
+}
+.navbar .menu > div:hover .dropdown {
+    display: block;
+}
+.navbar .menu a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+.navbar .menu .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    color: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+}
+.navbar .menu .dropdown a {
+    color: black;
+    padding: 10px 20px;
+    display: block;
+    text-decoration: none;
+}
+.navbar .menu .dropdown a:hover {
+    background-color: #f0f0f0;
+}
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f8f8;
+}
+.content img {
+    max-width: 100%;
+    height: auto;
+}
+.content .text {
+    margin-right: 20px;
+    font-size: 2em;
+    color: #4b0082;
+}
+.content .button {
+    background-color: #4b0082;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+.gradient {
+    background-image: linear-gradient(90deg, rgba(94,114,235,1) 0%, rgba(255,145,144,1) 56%, rgba(254,193,149,1) 100%);
+    color: transparent;
+    -webkit-background-clip: text;
+
+    animation: move 1s infinite;
+}
+
+@keyframes move {
+    50% {
+        background-image: linear-gradient(262deg, rgba(94,114,235,1) 0%, rgba(255,145,144,1) 56%, rgba(254,193,149,1) 100%);
+    }
+}
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+/* Dropdown menu các mục */
+.dropdown a {
+    padding: 10px 15px;
+    display: block;
+    font-size: 14px;
+    color: #333;
+}
+
+.dropdown a:hover {
+    background-color: #f0f0f0;
+}
+
+/* Hiển thị dropdown khi hover */
+div:hover .dropdown {
+    display: block;
+}
+
+/* Tạo mũi tên */
+.fas.fa-caret-down {
+    font-size: 12px;
+}
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #4b0082;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #45a049;
+}
