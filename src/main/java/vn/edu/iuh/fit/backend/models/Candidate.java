@@ -2,6 +2,7 @@ package vn.edu.iuh.fit.backend.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -14,24 +15,24 @@ import java.util.Objects;
 @ToString
 public class Candidate {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "can_id", nullable = false, columnDefinition = "bigint(20)")
     private Long id;
 
     @Column(name = "dob", nullable = false)
     private LocalDate dob;
 
-    @Column(name = "email", nullable = false)
-    private String email;
+    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "address", nullable = false, columnDefinition = "bigint(20)")
+    private Address address;
 
-    @Column(name = "full_name", nullable = false)
-    private String fullName;
-
-    @Column(name = "phone", nullable = false, length = 15)
+    @Column(name = "phone", columnDefinition = "varchar(15)")
     private String phone;
 
-    @OneToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "address", nullable = false)
-    private Address address;
+    @Column(name = "email", columnDefinition = "varchar(255)")
+    private String email;
+
+    @Column(name = "full_name", columnDefinition = "varchar(255)")
+    private String fullName;
 
     @Override
     public boolean equals(Object o) {

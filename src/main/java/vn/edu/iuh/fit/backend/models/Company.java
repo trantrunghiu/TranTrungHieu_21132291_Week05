@@ -8,33 +8,33 @@ import java.util.Objects;
 @Table(name = "company")
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Company {
     @Id
-    @Column(name = "comp_id", nullable = false)
+    @Column(name = "comp_id", nullable = false, columnDefinition = "bigint(20)")
     private Long id;
 
-    @Column(name = "about", length = 2000)
-    private String about;
-
-    @Column(name = "email", nullable = false)
-    private String email;
-
-    @Column(name = "comp_name", nullable = false)
-    private String compName;
-
-    @Column(name = "phone", nullable = false)
-    private String phone;
-
-    @Column(name = "web_url")
-    private String webUrl;
-
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "address", nullable = false)
+    @JoinColumn(name = "address", nullable = false, columnDefinition = "bigint(20)")
     @ToString.Exclude
     private Address address;
+
+    @Column(name = "about", columnDefinition = "varchar(2000)")
+    private String about;
+
+    @Column(name = "comp_name", columnDefinition = "varchar(255)")
+    private String compName;
+
+    @Column(name = "email", columnDefinition = "varchar(255)")
+    private String email;
+
+    @Column(name = "phone", columnDefinition = "varchar(255)")
+    private String phone;
+
+    @Column(name = "web_url", columnDefinition = "varchar(255)")
+    private String webUrl;
 
     @Override
     public boolean equals(Object o) {

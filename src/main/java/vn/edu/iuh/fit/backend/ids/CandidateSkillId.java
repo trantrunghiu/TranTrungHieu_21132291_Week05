@@ -17,5 +17,4 @@ public class CandidateSkillId implements Serializable {
 
     @Column(name = "skill_id", nullable = false)
     private Long skillId;
-
 }
