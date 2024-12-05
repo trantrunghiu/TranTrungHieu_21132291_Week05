@@ -10,31 +10,27 @@ import java.util.Objects;
 @Table(name = "job_skill")
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class JobSkill {
     @EmbeddedId
     private JobSkillId id;
 
+    @Column(name = "skill_level", columnDefinition = "tinyint(4)")
+    private Byte skillLevel;
+
+    @Column(name = "more_infos", columnDefinition = "varchar(1000)")
+    private String moreInfos;
+
     @MapsId("jobId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "job_id", nullable = false)
-    @ToString.Exclude
+    @JoinColumn(name = "job_id", nullable = false, columnDefinition = "bigint(20)")
     private Job job;
 
     @MapsId("skillId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "skill_id", nullable = false)
-    @ToString.Exclude
+    @JoinColumn(name = "skill_id", nullable = false, columnDefinition = "bigint(20)")
     private Skill skill;
-
-    @Column(name = "more_infos", length = 1000)
-    private String moreInfos;
-
-    @Column(name = "skill_level", nullable = false)
-    private Byte skillLevel;
 
     @Override
     public boolean equals(Object o) {

@@ -1,8 +1,9 @@
 package vn.edu.iuh.fit.backend.models;
 
+import java.util.Objects;
+
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "skill")
@@ -11,20 +12,19 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-
 public class Skill {
     @Id
-    @Column(name = "skill_id", nullable = false)
+    @Column(name = "skill_id", nullable = false, columnDefinition = "bigint(20)")
     private Long id;
 
-    @Column(name = "skill_description")
-    private String skillDescription;
+    @Column(name = "skill_type", columnDefinition = "tinyint(4)")
+    private Byte skillType;
 
-    @Column(name = "skill_name")
+    @Column(name = "skill_name", columnDefinition = "varchar(150)")
     private String skillName;
 
-    @Column(name = "type")
-    private Byte type;
+    @Column(name = "skil_desc", columnDefinition = "varchar(300)")
+    private String skillDesc;
 
     @Override
     public boolean equals(Object o) {
