@@ -2,6 +2,7 @@ package vn.edu.iuh.fit.backend.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.util.Objects;
 
 @Entity
@@ -13,23 +14,23 @@ import java.util.Objects;
 @ToString
 public class Address {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "add_id", nullable = false, columnDefinition = "bigint(20)")
     private Long id;
 
-    @Column(name = "street", length = 150)
-    private String street;
-
-    @Column(name = "city", length = 50)
-    private String city;
-
-    @Column(name = "country")
+    @Column(name = "country", columnDefinition = "smallint(6)")
     private Short country;
 
-    @Column(name = "number", length = 20)
+    @Column(name = "zipcode", columnDefinition = "varchar(7)")
+    private String zipcode;
+
+    @Column(name = "number", columnDefinition = "varchar(20)")
     private String number;
 
-    @Column(name = "zipcode", length = 7)
-    private String zipcode;
+    @Column(name = "city", columnDefinition = "varchar(50)")
+    private String city;
+
+    @Column(name = "street", columnDefinition = "varchar(150)")
+    private String street;
 
     @Override
     public boolean equals(Object o) {

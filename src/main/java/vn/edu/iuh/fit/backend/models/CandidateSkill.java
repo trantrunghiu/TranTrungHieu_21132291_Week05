@@ -16,32 +16,21 @@ public class CandidateSkill {
     @EmbeddedId
     private CandidateSkillId id;
 
+    @Column(name = "skill_level", columnDefinition = "tinyint(4)")
+    private Byte skillLevel;
+
+    @Column(name = "more_infos", columnDefinition = "varchar(1000)")
+    private String moreInfos;
+
     @MapsId("canId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "can_id", nullable = false)
+    @JoinColumn(name = "can_id", nullable = false, columnDefinition = "bigint(20)")
     private Candidate can;
 
     @MapsId("skillId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "skill_id", nullable = false)
+    @JoinColumn(name = "skill_id", nullable = false, columnDefinition = "bigint(20)")
     private Skill skill;
-
-    @Column(name = "more_infos", length = 1000)
-    private String moreInfos;
-
-    @Column(name = "skill_level", nullable = false)
-    private Byte skillLevel;
-
-    @Override
-    public String toString() {
-        return "CandidateSkill{" +
-                "id=" + id +
-                ", can=" + can +
-                ", skill=" + skill +
-                ", moreInfos='" + moreInfos + '\'' +
-                ", skillLevel=" + skillLevel +
-                '}';
-    }
 
     @Override
     public boolean equals(Object o) {
