@@ -22,8 +22,6 @@ public class CandidateController {
     @Autowired
     private CandidateRepository candidateRepository;
     @Autowired
-    private AddressRepository addressRepository;
-    @Autowired
     private CandidateService candidateService;
 
     @GetMapping("/list")
