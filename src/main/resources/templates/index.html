@@ -79,23 +79,33 @@
         </div>
     </div>
 
-    <!-- Modal -->
     <div id="employerModal" class="modal" style="display:none;">
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Thông Tin Tuyển Dụng</h2>
-            <form>
-                <label for="companyName">Tên Công Ty</label>
-                <input type="text" id="companyName" name="companyName" required>
+            <form id="jobForm" method="post" action="/saveJob">
 
+                <a>Chọn Công Ty</a>
+                <br>
+                <select class="select_box" id="companySelect" name="companyId" onchange="updateCompanyDetails()">
+                    <option value="" disabled selected>Chọn một công ty</option>
+                    <option th:each="company : ${listCompanies}"
+                            th:value="${company.id}"
+                            th:text="${company.compName}"
+                            th:data-phone="${company.phone}"
+                            th:data-email="${company.email}"
+                            th:data-website="${company.webUrl}">
+                    </option>
+                </select>
+                <br>
                 <label for="phoneNumber">Số Điện Thoại</label>
-                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+                <input type="tel" id="phoneNumber" name="phoneNumber" readonly>
 
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" readonly>
 
                 <label for="website">URL Website</label>
-                <input type="url" id="website" name="website" required>
+                <input type="url" id="website" name="website" readonly>
 
                 <label for="jobTitle">Tên Công Việc</label>
                 <input type="text" id="jobTitle" name="jobTitle" required>
@@ -103,8 +113,29 @@
                 <label for="jobDescription">Chi Tiết Công Việc</label>
                 <textarea id="jobDescription" name="jobDescription" rows="4" required></textarea>
 
-                <label for="skillLevel">Mức Độ Kỹ Năng (1 đến 5)</label>
-                <input type="number" id="skillLevel" name="skillLevel" min="1" max="5" required>
+                <label for="postedDate">Ngày Đăng</label>
+                <input type="date" id="postedDate" name="postedDate" required>
+
+                <label for="expiryDate">Ngày Hết Hạn</label>
+                <input type="date" id="expiryDate" name="expiryDate" required>
+
+                <label for="salaryRange">Mức Lương</label>
+                <input type="text" id="salaryRange" name="salaryRange" required>
+
+                <a>Kinh Nghiệm Cần Có</a>
+                <br>
+                <select class="form-select" id="experienceSelect" name="experienceRequired" required>
+                    <option value="under_1_year">Dưới 1 năm</option>
+                    <option value="1_to_3_years">Từ 1 đến 3 năm</option>
+                    <option value="3_to_5_years">Từ 3 đến 5 năm</option>
+                    <option value="over_5_years">Trên 5 năm</option>
+                </select>
+
+
+                <br>
+
+                <label for="location">Vị Trí Công Việc</label>
+                <input type="text" id="location" name="location" required>
 
                 <button type="submit">Gửi</button>
             </form>
@@ -112,8 +143,33 @@
     </div>
 </div>
 <div class="content">
+    <div class="banner">
+        <button class="arrow left">&lt;</button>
+        <div class="slides">
+            <div class="slide">
+                <img src="https://vieclam24h.vn/_next/image?url=https%3A%2F%2Fcdn1.vieclam24h.vn%2Fimages%2Fseeker-banner%2F2024%2F02%2F26%2Fbanner-web-awo---tha%25CC%2581ng-2_170891267692.jpg&w=1920&q=75"
+                     alt="Image 1">
+            </div>
+            <div class="slide">
+                <img src="https://vieclam24h.vn/_next/image?url=https%3A%2F%2Fcdn1.vieclam24h.vn%2Fimages%2Fseeker-banner%2F2024%2F03%2F08%2FPC-Banner-AWO-Mar2024_170988353144.jpg&w=1920&q=75"
+                     alt="Image 2">
+            </div>
+            <div class="slide">
+                <img src="https://vieclam24h.vn/_next/image?url=https%3A%2F%2Fcdn1.vieclam24h.vn%2Fimages%2Fseeker-banner%2F2024%2F09%2F24%2FMatbao-PC%2520(1)_172715873880.jpg&w=1920&q=75"
+                     alt="Image 3">
+            </div>
+        </div>
+        <button class="arrow right">&gt;</button>
+    </div>
 
+</div>
+<div th:if="${message}" id="notification" class="notification-container">
+    <div class="notification-box">
+        <span th:text="${message}"></span>
+        <button id="okButton" class="ok-button">OK</button>
+    </div>
 </div>
 </body>
 <script src="/js/modal.js"></script>
+<script src="/js/slide.js"></script>
 </html>

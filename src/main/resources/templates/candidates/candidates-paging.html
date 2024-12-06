@@ -113,22 +113,23 @@
     </table>
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
-            <!-- Mũi tên trang trước -->
             <li class="page-item" th:classappend="${candidates.first ? 'disabled' : ''}">
-                <a class="page-link" th:href="@{/candidates(size=${candidates.size}, page=${candidates.number})}" aria-label="Previous">
+                <a class="page-link" th:href="@{/candidates(size=${candidates.size}, page=${candidates.number})}"
+                   aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
 
-            <!-- Các số trang, giới hạn hiển thị tối đa 5 trang -->
-            <li class="page-item " th:each="pageNumber : ${#numbers.sequence(candidates.number, candidates.number + 4)}"
-                th:if="${pageNumber > 0 && pageNumber <= candidates.totalPages}" th:classappend="${pageNumber == candidates.number + 1 ? 'active' : ''}">
-                <a class="page-link" th:href="@{/candidates(size=${candidates.size}, page=${pageNumber})}" th:text="${pageNumber}"></a>
+            <li class="page-item " th:each="pageNumber : ${#numbers.sequence(candidates.number - 1, candidates.number + 3)}"
+                th:if="${pageNumber > 0 && pageNumber <= candidates.totalPages}"
+                th:classappend="${pageNumber == candidates.number + 1 ? 'active' : ''}">
+                <a class="page-link" th:href="@{/candidates(size=${candidates.size}, page=${pageNumber})}"
+                   th:text="${pageNumber}"></a>
             </li>
 
-            <!-- Mũi tên trang tiếp theo -->
             <li class="page-item" th:classappend="${candidates.last ? 'disabled' : ''}">
-                <a class="page-link" th:href="@{/candidates(size=${candidates.size}, page=${candidates.number + 2})}" aria-label="Next">
+                <a class="page-link" th:href="@{/candidates(size=${candidates.size}, page=${candidates.number + 2})}"
+                   aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
