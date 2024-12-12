@@ -1,51 +1,45 @@
 package vn.edu.iuh.fit.backend.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.Objects;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "experience")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@Table(name = "experience")
 public class Experience {
     @Id
-    @Column(name = "exp_id", nullable = false, columnDefinition = "bigint(20)")
-    private Long id;
-
-    @Column(name = "from_date", length = 20, nullable = false)
-    private java.sql.Date fromDate;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "exp_id")
+    private long id;
+    @Column(name = "company", nullable = false, length = 120)
+    private String companyName;
+    @Column(name = "from_date", nullable = false)
+    private LocalDate fromDate;
     @Column(name = "to_date", nullable = false)
-    private java.sql.Date toDate;
+    private LocalDate toDate;
+    @Column(name = "role", nullable = false, length = 100)
+    private String role;
+    @Column(name = "work_desc", nullable = false, length = 400)
+    private String workDescription;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "candidate")
-    @ToString.Exclude
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "can_id")
+    @JsonIgnore
     private Candidate candidate;
 
-    @Column(name = "role", columnDefinition = "varchar(100)")
-    private String role;
+    public Experience(String companyName, LocalDate fromDate, LocalDate toDate, String role, String workDescription) {
+        this.companyName = companyName;
+        this.fromDate = fromDate;
+        this.toDate = toDate;
+        this.role = role;
+        this.workDescription = workDescription;
 
-    @Column(name = "company", columnDefinition = "varchar(120)")
-    private String company;
-
-    @Column(name = "work_desc", columnDefinition = "varchar(400)")
-    private String workDesc;
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Experience that = (Experience) o;
-        return Objects.equals(id, that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
     }
 }

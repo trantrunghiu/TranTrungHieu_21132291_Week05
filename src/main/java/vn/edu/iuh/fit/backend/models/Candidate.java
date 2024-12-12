@@ -1,49 +1,61 @@
 package vn.edu.iuh.fit.backend.models;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.Objects;
+import java.util.List;
 
-@Entity
-@Table(name = "candidate")
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
+@Entity
+@Table(name = "candidate")
 public class Candidate {
     @Id
-    @Column(name = "can_id", nullable = false, columnDefinition = "bigint(20)")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "dob", nullable = false)
+    @Column(name = "dob", nullable = true)
     private LocalDate dob;
 
-    @OneToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "address", nullable = false, columnDefinition = "bigint(20)")
-    private Address address;
-
-    @Column(name = "phone", columnDefinition = "varchar(15)")
-    private String phone;
-
-    @Column(name = "email", columnDefinition = "varchar(255)")
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "full_name", columnDefinition = "varchar(255)")
+    @Column(name = "full_name", nullable = false)
     private String fullName;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Candidate candidate = (Candidate) o;
-        return Objects.equals(id, candidate.id);
+    @Column(name = "phone", nullable = true, length = 15)
+    private String phone;
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "address", nullable = false)
+    private Address address;
+
+    @OneToMany(mappedBy = "can")
+    private List<CandidateSkill> candidateSkills;
+
+    private int status = 1;
+
+    public Candidate() {
+
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
+    public Candidate(Long id, LocalDate dob, String email, String fullName, String phone, Address address) {
+        this.id = id;
+        this.dob = dob;
+        this.email = email;
+        this.fullName = fullName;
+        this.phone = phone;
+        this.address = address;
+    }
+
+    public Candidate(String fullName, LocalDate dob, Address address, String phone, String email) {
+        this.fullName = fullName;
+        this.dob = dob;
+        this.address = address;
+        this.phone = phone;
+        this.email = email;
     }
 }

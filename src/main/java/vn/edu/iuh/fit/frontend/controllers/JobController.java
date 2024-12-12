@@ -38,11 +38,6 @@ public class JobController {
         job.setCompany(company);
         job.setJobName(jobTitle);
         job.setJobDesc(jobDescription);
-        job.setPostedDate(Date.valueOf(postedDate));
-        job.setExpiryDate(Date.valueOf(expiryDate));
-        job.setSalaryRange(salaryRange);
-        job.setExperienceRequired(experienceRequired);
-        job.setLocation(location);
 
         jobRepository.save(job);
 

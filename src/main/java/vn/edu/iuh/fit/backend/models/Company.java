@@ -1,51 +1,36 @@
 package vn.edu.iuh.fit.backend.models;
 
 import jakarta.persistence.*;
-import lombok.*;
-import java.util.Objects;
+import lombok.Getter;
+import lombok.Setter;
 
-@Entity
-@Table(name = "company")
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
+@Entity
+@Table(name = "company")
 public class Company {
     @Id
-    @Column(name = "comp_id", nullable = false, columnDefinition = "bigint(20)")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "comp_id", nullable = false)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "address", nullable = false, columnDefinition = "bigint(20)")
-    @ToString.Exclude
-    private Address address;
-
-    @Column(name = "about", columnDefinition = "varchar(2000)")
+    @Column(name = "about", length = 2000)
     private String about;
 
-    @Column(name = "comp_name", columnDefinition = "varchar(255)")
-    private String compName;
-
-    @Column(name = "email", columnDefinition = "varchar(255)")
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "phone", columnDefinition = "varchar(255)")
+    @Column(name = "comp_name", nullable = false)
+    private String name;
+
+    @Column(name = "phone", nullable = false)
     private String phone;
 
-    @Column(name = "web_url", columnDefinition = "varchar(255)")
+    @Column(name = "web_url")
     private String webUrl;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Company company = (Company) o;
-        return Objects.equals(id, company.id);
-    }
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "address", nullable = false)
+    private Address address;
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
 }

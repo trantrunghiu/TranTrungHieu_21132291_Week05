@@ -1,61 +1,36 @@
 package vn.edu.iuh.fit.backend.models;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import vn.edu.iuh.fit.backend.enums.StatusPostJob;
 
-import java.util.Date;
-import java.util.Objects;
+import java.util.List;
 
-@Entity
-@Table(name = "job")
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
+@Entity
+@Table(name = "job")
 public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "job_id", nullable = false, columnDefinition = "bigint(20)")
+    @Column(name = "job_id", nullable = false)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "company", columnDefinition = "bigint(20)")
-    @ToString.Exclude
-    private Company company;
-
-    @Column(name = "job_desc", columnDefinition = "varchar(2000)")
+    @Column(name = "job_desc", nullable = false, length = 2000)
     private String jobDesc;
 
-    @Column(name = "job_name", columnDefinition = "varchar(255)")
+    @Column(name = "job_name", nullable = false)
     private String jobName;
 
-    // Thêm các trường mới theo yêu cầu
-    @Column(name = "posted_date", nullable = false)
-    private Date postedDate;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company")
+    private Company company;
 
-    @Column(name = "expiry_date")
-    private Date expiryDate;
+    @Column(name = "status", nullable = false)
+    private StatusPostJob status;
 
-    @Column(name = "salary_range", columnDefinition = "varchar(255)")
-    private String salaryRange;
+    @OneToMany(mappedBy = "job", fetch = FetchType.EAGER)
+    private List<JobSkill> jobSkills;
 
-    @Column(name = "experience_required", columnDefinition = "varchar(255)")
-    private String experienceRequired;
-
-    @Column(name = "location", columnDefinition = "varchar(255)")
-    private String location;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Job job = (Job) o;
-        return Objects.equals(id, job.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
 }

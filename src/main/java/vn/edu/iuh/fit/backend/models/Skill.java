@@ -1,41 +1,42 @@
 package vn.edu.iuh.fit.backend.models;
 
-import java.util.Objects;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import vn.edu.iuh.fit.backend.enums.SkillType;
 
-@Entity
-@Table(name = "skill")
+import java.util.List;
+
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
+@Entity
+@Table(name = "skill")
+@JsonIgnoreProperties({"jobSkills"})
 public class Skill {
     @Id
-    @Column(name = "skill_id", nullable = false, columnDefinition = "bigint(20)")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "skill_id", nullable = false)
     private Long id;
 
-    @Column(name = "skill_type", columnDefinition = "tinyint(4)")
-    private Byte skillType;
+    @Column(name = "skill_desc")
+    private String skillDescription;
 
-    @Column(name = "skill_name", columnDefinition = "varchar(150)")
+    @Column(name = "skill_name")
     private String skillName;
 
-    @Column(name = "skil_desc", columnDefinition = "varchar(300)")
-    private String skillDesc;
+    @Column(name = "skill_type")
+    private SkillType type;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Skill skill = (Skill) o;
-        return Objects.equals(id, skill.id);
+    @OneToMany(mappedBy = "skill")
+    private List<JobSkill> jobSkills;
+
+    public Skill() {
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
+    public Skill(String skillDescription, String skillName, SkillType type) {
+        this.skillDescription = skillDescription;
+        this.skillName = skillName;
+        this.type = type;
     }
 }

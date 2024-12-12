@@ -1,47 +1,40 @@
 package vn.edu.iuh.fit.backend.models;
 
+import com.neovisionaries.i18n.CountryCode;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.Objects;
-
-@Entity
-@Table(name = "address")
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
+@Entity
+@Table(name = "address")
 public class Address {
     @Id
-    @Column(name = "add_id", nullable = false, columnDefinition = "bigint(20)")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "country", columnDefinition = "smallint(6)")
-    private Short country;
-
-    @Column(name = "zipcode", columnDefinition = "varchar(7)")
-    private String zipcode;
-
-    @Column(name = "number", columnDefinition = "varchar(20)")
-    private String number;
-
-    @Column(name = "city", columnDefinition = "varchar(50)")
-    private String city;
-
-    @Column(name = "street", columnDefinition = "varchar(150)")
+    @Column(name = "street", length = 150)
     private String street;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Address address = (Address) o;
-        return Objects.equals(id, address.id);
-    }
+    @Column(name = "city", length = 50)
+    private String city;
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
+    @Column(name = "country", length = 30,columnDefinition = "SMALLINT")
+    private CountryCode country = CountryCode.VN;
+
+    @Column(name = "number", length = 20)
+    private String number;
+
+    @Column(name = "zipcode", length = 7)
+    private String zipcode;
+    public Address(String number, String street, String city, String zipcode, CountryCode country) {
+        this.number = number;
+        this.street = street;
+        this.city = city;
+        this.zipcode = zipcode;
+        this.country = country;
     }
+    public Address(){}
 }
