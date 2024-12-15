@@ -8,7 +8,7 @@ Check out the [VIDEO DEMO WEB](https://youtu.be/gcmjH-mjqhA).
 
 ## Other Document (DOCUMENT WORD FILE, PPT FILE ABOUT INTO ABOUT WEB, DATA CREATE - SQL FILE, VIDEO DEMO FILE)
 
-Check out the [DOCUMENT WORD FILE]([https://youtu.be/gcmjH-mjqhA](https://docs.google.com/document/d/1XI2XfRsR_H96RntE31bhkS5xaV0gWCJ8_zjLHTX9h44/edit?usp=drive_link)).
+Check out the [DOCUMENT WORD FILE]((https://docs.google.com/document/d/1XI2XfRsR_H96RntE31bhkS5xaV0gWCJ8_zjLHTX9h44/edit?usp=drive_link)).
 
 Check out the [PPT FILE ABOUT INTO ABOUT WEB](https://docs.google.com/presentation/d/1oBhCjA5n8nSk-cEV_cZ6UQPpaXjvb2_Q/edit?usp=drive_link&ouid=114231269998507308345&rtpof=true&sd=true).
 
