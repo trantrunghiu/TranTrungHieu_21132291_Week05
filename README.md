@@ -16,6 +16,44 @@ Check out the [SQL FILE TO CREATE DATA](https://drive.google.com/file/d/1--kgHzx
 
 Check out the [VIDEO DEMO FILE](https://drive.google.com/file/d/1zceoe7Aumy7JkWMF3AXj3ch3bexOMmcX/view?usp=sharing).
 
+# Some image about my web
+
+FORM CHOOSE ROLE
+
+![](https://i.imgur.com/j7n5RTT.png)  
+
+FORM LOGIN ROLE
+
+![](https://i.imgur.com/wxMJ5TG.png)  
+
+FORM LOGIN ROLE
+
+![](https://i.imgur.com/vFjTOkI.png)  
+
+ADD SKILL
+
+![](https://i.imgur.com/xmGM2Rw.png) 
+
+JOB INFO AND FIND SUITABLE CANDIDATE 
+
+![](https://i.imgur.com/fdCHDPE.png)  
+
+SEND MAIL INVITE JOB 
+
+![](https://i.imgur.com/Cah0gfX.png)  
+
+MAIL INVITED JOB 
+
+![](https://i.imgur.com/Q6nir6f.png) 
+
+JOB OPENING FOR CANDIDATES
+
+![](https://i.imgur.com/MptWWGx.png) 
+
+NAVBAR BUTTON CHOOSE FUNCTION
+
+![](https://i.imgur.com/lDRjZCt.png) 
+
 # Job Posting Web Application
 
 This is a Java Spring Boot-based web application for managing job postings. It allows employers to post jobs and manage applications, while job seekers can browse and apply for jobs. 
