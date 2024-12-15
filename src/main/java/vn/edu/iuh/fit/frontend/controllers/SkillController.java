@@ -5,8 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import vn.edu.iuh.fit.backend.models.Candidate;
 import vn.edu.iuh.fit.backend.models.Company;
 import vn.edu.iuh.fit.backend.models.Job;
@@ -42,30 +41,30 @@ public class SkillController {
         OAuth2User user = (OAuth2User) authentication.getPrincipal();
         Optional<Candidate> candidate = candidateService.findByEmail(user.getAttribute("email"));
         Optional<Company> company = companyService.findByEmail(user.getAttribute("email"));
-        if(candidate.isPresent() || company.isPresent()) {
-            if(skill != null) {
-                if(!skill.getSkillDescription().trim().isEmpty()){
-                    if(!skill.getSkillName().trim().isEmpty()){
+        if (candidate.isPresent() || company.isPresent()) {
+            if (skill != null) {
+                if (!skill.getSkillDescription().trim().isEmpty()) {
+                    if (!skill.getSkillName().trim().isEmpty()) {
                         System.out.println(skill.getType());
-                        if(skill.getType() != null){
+                        if (skill.getType() != null) {
                             skill.setId(null);
                             skillService.save(skill);
                             model.addAttribute("message", "Skill added successfully");
-                        }else{
+                        } else {
                             model.addAttribute("error", "Skill type cannot be empty");
                         }
-                    }else{
+                    } else {
                         model.addAttribute("error", "Skill name cannot be empty");
                     }
-                }else{
+                } else {
                     model.addAttribute("error", "Skill description cannot be empty");
                 }
-            }else{
+            } else {
                 model.addAttribute("error", "Skill null");
             }
-            if(candidate.isPresent()) {
-                return "candidates/Home";
-            }else{
+            if (candidate.isPresent()) {
+                return "candidates/home";
+            } else {
                 List<Job> jobs = jobService.findByCompanyId(company.get().getId());
                 company.ifPresent(value -> model.addAttribute("company", value));
                 jobs.forEach(job -> {
@@ -74,7 +73,7 @@ public class SkillController {
                     }
                 });
                 model.addAttribute("jobs", jobs);
-                return "company/Home";
+                return "company/home";
             }
         }
         return "redirect:/";

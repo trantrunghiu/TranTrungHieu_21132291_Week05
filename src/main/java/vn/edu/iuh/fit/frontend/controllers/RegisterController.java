@@ -31,6 +31,7 @@ public class RegisterController {
     private final AddressService addressService;
     private final CompanyService companyService;
 
+
     public RegisterController(CandidateService candidateService, AddressService addressService, CompanyService companyService) {
         this.candidateService = candidateService;
         this.addressService = addressService;
@@ -82,16 +83,14 @@ public class RegisterController {
                                 if (!registerRequest.zipcode.trim().isEmpty() && registerRequest.zipcode.trim().length() <= 7) {
                                     if (!registerRequest.number.trim().isEmpty()) {
                                         if (!registerRequest.street.trim().isEmpty()) {
-
+                                            Company company = new Company();
                                             Address address = new Address();
                                             address.setCity(registerRequest.city.trim());
                                             address.setCountry(registerRequest.country);
                                             address.setZipcode(registerRequest.zipcode);
                                             address.setStreet(registerRequest.street.trim());
                                             address.setNumber(registerRequest.number.trim());
-                                            addressService.save(address);
 
-                                            Company company = new Company();
                                             company.setAddress(address);
                                             company.setAbout(registerRequest.about.trim());
                                             company.setPhone(registerRequest.phone.trim());
@@ -99,6 +98,7 @@ public class RegisterController {
                                             company.setWebUrl(registerRequest.webUrl.trim());
                                             company.setName(registerRequest.companyName);
 
+                                            addressService.save(address);
                                             companyService.save(company);
                                             // Thêm rule CANDIDATE vào quyền của người dùng sau khi đăng ký thành công
                                             List<GrantedAuthority> updatedAuthorities = new ArrayList<>(authentication.getAuthorities());
@@ -173,7 +173,7 @@ public class RegisterController {
                 Period age = Period.between(candidateRegisterRequest.dob, currentDate);
                 if (age.getYears() >= 18) {
                     if (candidateRegisterRequest.country != null) {
-                        if (candidateRegisterRequest.city.trim().matches("[a-zA-Z]+")) {
+                        if (candidateRegisterRequest.city.trim().matches("[a-zA-Z]+([ ]?[a-zA-Z]+)*")) {
                             Address address = new Address();
                             address.setCity(candidateRegisterRequest.city);
                             address.setCountry(candidateRegisterRequest.country);

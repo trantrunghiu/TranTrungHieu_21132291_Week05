@@ -1,5 +1,6 @@
 package vn.edu.iuh.fit.backend.services;
 
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vn.edu.iuh.fit.backend.models.Skill;
@@ -24,4 +25,9 @@ public class SkillService {
     public Optional<Skill> findById(long id) {
         return skillRepository.findById(id);
     }
+
+    public List<Skill> getAllSkills() {
+        return skillRepository.findAll();
+    }
+
 }

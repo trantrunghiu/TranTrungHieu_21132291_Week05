@@ -12,7 +12,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "skill")
-@JsonIgnoreProperties({"jobSkills"})
+@JsonIgnoreProperties({"jobSkills"})//để loại bỏ các thuộc tính không cần thiết từ quá trình serialize.
 public class Skill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,16 +27,18 @@ public class Skill {
 
     @Column(name = "skill_type")
     private SkillType type;
-
     @OneToMany(mappedBy = "skill")
     private List<JobSkill> jobSkills;
 
-    public Skill() {
-    }
+
 
     public Skill(String skillDescription, String skillName, SkillType type) {
         this.skillDescription = skillDescription;
         this.skillName = skillName;
         this.type = type;
+    }
+
+    public Skill() {
+
     }
 }

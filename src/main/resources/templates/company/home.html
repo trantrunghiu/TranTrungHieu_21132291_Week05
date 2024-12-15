@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Bootstrap Example</title>
+    <title>COMPANY</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" href="https://i.imgur.com/PdQZdyG.png" type="image/png">
     <style>
         /* Remove the navbar's default margin-bottom and rounded borders */
         .navbar {
@@ -67,15 +68,80 @@
         .closebtn:hover {
             color: black;
         }
-        table {
-            border-collapse: collapse;
-            border: 2px solid rgb(140 140 140);
-            font-family: sans-serif;
-            font-size: 16px;
-            letter-spacing: 1px;
-            width: 100%;
+
+        .container td {
+            font-weight: normal;
+            font-size: 1em;
+            -webkit-box-shadow: 0 2px 2px -2px #ffffff;
+            -moz-box-shadow: 0 2px 2px -2px #183ea5;
+            box-shadow: 0 2px 2px -2px rgba(255, 255, 255, 0);
         }
 
+        .container {
+            text-align: left;
+            overflow: hidden;
+            width: 80%;
+            margin: 0 auto;
+            display: table;
+            padding: 0 0 8em 0;
+            background-color: #f9f9f9; /* Lighter background color */
+            border-radius: 10px;
+        }
+
+        .container td, .container th {
+            padding-bottom: 2%;
+            padding-top: 2%;
+            padding-left: 2%;
+            width: auto;
+        }
+
+        /* Bright, soft background-color for odd rows */
+        .container tr:nth-child(odd) {
+            background-color: #fff;
+        }
+
+        /* Bright, soft background-color for even rows */
+        .container tr:nth-child(even) {
+            background-color: #eaf0f6; /* Light blue-grey */
+        }
+
+        /* Lighter, fresh header */
+        .container th {
+            background-color: #ff8b8b; /* Light sky blue */
+            color: white;
+            width: auto;
+        }
+
+        /* Color for the first cell in each row */
+        .container td:first-child {
+            color: #f56342; /* Soft coral tone */
+        }
+
+        /* Hover effects with brighter tones */
+        .container tr:hover {
+            background-color: #dde6f0; /* Lighter hover color */
+            -webkit-box-shadow: 0 6px 6px -6px rgba(0, 0, 0, 0.1);
+            -moz-box-shadow: 0 6px 6px -6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 6px 6px -6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Brighter hover color for cells */
+        .container td:hover {
+            background-color: #ffe066; /* Soft yellow */
+            color: #5b4e1f; /* Darker brown text for contrast */
+            font-weight: bold;
+            box-shadow: 0 0 8px rgba(255, 238, 0, 0.5); /* Soft yellow glow */
+            transform: translate3d(6px, -6px, 0);
+            transition: all 0.4s ease-out;
+        }
+
+        /* Mobile adjustments: Hide the fourth column */
+        @media (max-width: 800px) {
+            .container td:nth-child(4),
+            .container th:nth-child(4) {
+                display: none;
+            }
+        }
         caption {
             caption-side: top;
             padding: 10px;
@@ -112,69 +178,260 @@
         th{
             text-align: center;
         }
+        .title-table {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            width: 160px;
+            text-align: center;
+            margin: auto;
+            white-space: nowrap;
+            padding-bottom: 13px;
+        }
+
+        .title-table:before {
+            background-color: #c50000;
+            content: '';
+            display: block;
+            height: 3px;
+            width: 75px;
+            margin-bottom: 5px;
+        }
+        .navigationWrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #ff8b8b;
+            box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
+            color: white;
+            text-transform: uppercase;
+            overflow: hidden;
+
+            .logoWrapper {
+                display: flex;
+
+                .stylish {
+                    font-weight: bold;
+                }
+
+                .logo {
+                    padding-left: 4px;
+                    color: #ffe066;
+                }
+            }
+
+            .navigation {
+                display: flex;
+                list-style-type: none;
+
+                li {
+                    opacity: 1;
+                    list-style-type: none;
+                    color: white;
+                    text-decoration: none;
+                    transition: all 0.3s ease-in-out;
+                }
+
+                .parent {
+                    padding: 0 10px;
+                    cursor: pointer;
+
+                    .link {
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        text-decoration: none;
+                        transition: all 0.3s ease-in-out;
+                        color: white;
+
+                        &:hover {
+                            color: #ea4f4c;
+                        }
+
+                        .fa-minus {
+                            opacity: 0;
+                            transition: all 0.3s ease-in-out;
+                            position: absolute;
+                            left: -16px;
+                            top: 3px;
+                        }
+
+                        .fa-plus {
+                            opacity: 1;
+                            transition: all 0.3s ease-in-out;
+                        }
+
+                        .fas {
+                            color: #ea4f4c;
+                            margin: -2px 4px 0;
+                            font-size: 10px;
+                            transition: all 0.3s ease-in-out;
+                        }
+                    }
+                }
+
+                .subnavigation {
+                    display: none;
+                    list-style-type: none;
+                    width: 500px;
+                    position: absolute;
+                    top: 40%;
+                    left: 25%;
+                    margin: auto;
+                    transition: all 0.3s ease-in-out;
+                    background-color: #222;
+
+                    li a {
+                        font-size: 17px;
+                        padding: 0 5px;
+                    }
+                }
+            }
+        }
+
+        .active.parent {
+            transform: translate(-40px, -25px);
+
+            .link {
+                font-size: 12px;
+
+                .fa-minus {
+                    opacity: 1 !important;
+                    font-size: 8px;
+                }
+
+                .fa-plus {
+                    opacity: 0 !important;
+                }
+            }
+
+            .subnavigation {
+                display: flex;
+            }
+        }
+
+        .active#clients {
+            .subnavigation {
+                transform: translate(-150px, 17px);
+            }
+        }
+
+        .active#services {
+            .subnavigation {
+                transform: translate(-290px, 17px);
+            }
+        }
+
+        .invisible {
+            opacity: 0 !important;
+            transform: translate(50px, 0);
+        }
+
+
+        /* Navbar */
+        .navbar-inverse {
+            background-color: rgba(255, 255, 255, 0.7);
+            border-color: #e7e7e7;
+        }
+
+        .navbar-inverse .navbar-brand {
+            color: #ff8b8b;
+        }
+
+        .navbar-inverse .navbar-nav > li > a {
+            color: #ff8b8b;
+        }
+
+        .navbar-inverse .navbar-nav > li > a:hover {
+            background-color: #ffe6e6;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background-color: #ff9c9c;
+            border-color: #ff8b8b;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #ff8b8b;
+            border-color: #ff9c9c;
+            transform: scale(1.05);
+        }
 
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Logo</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="/company">Profile</a></li>
-<!--                <li><a href="/company/find-candidates">Find Candidate</a></li>-->
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            </ul>
-        </div>
+<nav class="navigationWrapper">
+    <div class="logoWrapper">
+        <span class="stylish">TUYỂN DỤNG</span>
+        <span class="logo">2TH</span>
     </div>
+    <ul class="navigation">
+        <li class="parent"><a class="link" href="#">HOME</a></li>
+        <li class="parent"><a class="link" href="/logout">LOGOUT</a></li>
+    </ul>
 </nav>
+<div class="container-fluid text-center" style="width: 100%">
+    <div class="row content" style="width: 100%">
+        <div>
 
-<div class="container-fluid text-center">
-    <div class="row content">
-        <div class="col-sm-2 sidenav">
-            <div style="display: flex; justify-content: center; flex-direction: column">
-                <div style="display: flex; justify-content: center; flex-direction: column">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#addSkillModal">Add Skill</button>
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#addJobModal" style="margin-top: 10px">Add Job</button>
+            <div style="display: flex; justify-content: space-around">
+                <table class="container" style="width: 300px; margin-left: 100px; margin-top: 20px" th:if="${company}">
+                    <tbody>
+                    <tr>
+                        <td >User Name</td>
+                        <td>
+                            <p th:text="${company.getName()}"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >Email</td>
+                        <td >
+                            <p th:text="${company.getEmail()}"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Phone Number</td>
+                        <td >
+                            <p th:text="${company.getPhone()}"></p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div style="margin-right: 200px;margin-top: 20px">
+                    <div class="alert info" th:if="${message}">
+                        <span class="closebtn">&times;</span>
+                        <strong>Info!</strong> <p th:text="${message}"></p>
+                    </div>
+                    <div class="alert warning" th:if="${error}">
+                        <span class="closebtn">&times;</span>
+                        <strong>Warning!</strong> <p th:text="${error}"></p>
+                    </div>
+                    <div style="display: flex; justify-content: center; flex-direction: column">
+
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#addSkillModal">Add Skill</button>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#addJobModal" style="margin-top: 10px">Add Job</button>
+
+                    </div>
                 </div>
-            </div>
 
+            </div>
+            <div class="col-sm-2 sidenav">
+
+
+            </div>
         </div>
-        <div class="col-sm-8 text-left" style="margin-top: 30px">
-            <div class="alert info" th:if="${message}">
-                <span class="closebtn">&times;</span>
-                <strong>Info!</strong> <p th:text="${message}"></p>
-            </div>
-            <div class="alert warning" th:if="${error}">
-                <span class="closebtn">&times;</span>
-                <strong>Warning!</strong> <p th:text="${error}"></p>
-            </div>
 
-            <div  th:if="${company}" style="display: flex">
-                <div style="width: 100px">User Name</div>:
-                <p th:text="${company.getName()}"></p>
-            </div>
-            <div  th:if="${company}" style="display: flex">
-                <div style="width: 100px">Email</div>:
-                <p th:text="${company.getEmail()}"></p>
-            </div>
-            <div  th:if="${company}" style="display: flex">
-                <div style="width: 100px">Phone Number</div>:
-                <p th:text="${company.getPhone()}"></p>
-            </div>
+        <div class="col-sm-8 text-left" style="margin-top: 30px; width: 100%" >
+
             <div style="margin-top: 30px" th:if="${jobs}">
-                <table>
-                    <caption style="font-size: 20px">Jobs</caption>
+                <table class=" container">
+                    <caption class="title-table">Jobs</caption>
                     <!-- Header -->
                     <thead>
                     <tr>
@@ -187,45 +444,43 @@
                     <tr>
                         <th>Skill name</th>
                         <th>Description</th>
-                        <th>Type</th>
+                        <th>Level</th>
                         <th>More Infos</th>
                     </tr>
                     </thead>
                     <!-- Body -->
                     <tbody th:each="job : ${jobs}">
-                        <tr >
-                            <!-- Hiển thị thông tin công việc -->
-                            <td th:rowspan="${#lists.size(job.jobSkills) > 0 ? job.jobSkills.size() : 1}" th:text="${job.getJobName()}"></td>
-                            <td th:rowspan="${#lists.size(job.jobSkills) > 0 ? job.jobSkills.size() : 1}" th:text="${job.getJobDesc()}"></td>
+                    <tr >
+                        <!-- Hiển thị thông tin công việc -->
+                        <td th:rowspan="${#lists.size(job.jobSkills) +1}" th:text="${job.getJobName()}"></td>
+                        <td th:rowspan="${#lists.size(job.jobSkills) +1}" th:text="${job.getJobDesc()}"></td>
 
-                            <!-- Hiển thị thông tin kỹ năng đầu tiên nếu có -->
-                            <td th:if="${#lists.size(job.jobSkills) > 0}" th:text="${job.jobSkills[0].skill.skillName}"></td>
-                            <td th:if="${#lists.size(job.jobSkills) > 0}" th:text="${job.jobSkills[0].skill.skillDescription}"></td>
-                            <td th:if="${#lists.size(job.jobSkills) > 0}" th:text="${job.jobSkills[0].skill.type}"></td>
-                            <td th:if="${#lists.size(job.jobSkills) > 0}" th:text="${job.getStatus().name()}"></td>
-                            <td th:if="${#lists.size(job.jobSkills) > 0}">
-                                <a th:if="${job.getStatus().name().equals('OPEN')}" th:href="@{/company/find-candidates(jobId=${job.id})}">Find</a>
-                            </td>
-                            <td th:if="${#lists.size(job.jobSkills) > 0 && job.getStatus()!= null && job.getStatus().name().equals('OPEN')}">
-                                <a th:href="@{/company/status-job(jobId=${job.id},status='CLOSE')}">Close</a>
-                            </td>
-                            <td th:if="${ #lists.size(job.jobSkills) > 0 && job.getStatus()!= null && job.getStatus().name().equals('CLOSE')}">
-                                <a th:href="@{/company/status-job(jobId=${job.id},status='OPEN')}">Open</a>
-                            </td>
+                        <!-- Hiển thị thông tin kỹ năng đầu tiên nếu có -->
+                        <td th:if="${#lists.size(job.jobSkills) > 0}" th:text="${job.jobSkills[0].skill.skillName}"></td>
+                        <td th:if="${#lists.size(job.jobSkills) > 0}" th:text="${job.jobSkills[0].skill.skillDescription}"></td>
+                        <td th:if="${#lists.size(job.jobSkills) > 0}" th:text="${job.jobSkills[0].getSkillLevel()}"></td>
+                        <td th:if="${#lists.size(job.jobSkills) > 0}" th:text="${job.jobSkills[0].moreInfos}"></td>
+                        <td th:rowspan="${#lists.size(job.jobSkills) +1}" th:if="${#lists.size(job.jobSkills) > 0}">
+                            <a th:if="${job.getStatus().name().equals('OPEN')}" th:href="@{/company/find-candidates/page(jobId=${job.id})}">Find</a>
+                        </td>
+                        <td th:rowspan="${#lists.size(job.jobSkills) +1}" th:if="${#lists.size(job.jobSkills) > 0 && job.getStatus()!= null && job.getStatus().name().equals('OPEN')}">
+                            <a th:href="@{/company/status-job(jobId=${job.id},status='CLOSE')}">Close</a>
+                        </td>
+                        <td th:rowspan="${#lists.size(job.jobSkills) +1}" th:if="${ #lists.size(job.jobSkills) > 0 && job.getStatus()!= null && job.getStatus().name().equals('CLOSE')}">
+                            <a th:href="@{/company/status-job(jobId=${job.id},status='OPEN')}">Open</a>
+                        </td>
 
-                            <!-- Nếu không có kỹ năng, hiển thị thông báo -->
-                            <td th:if="${job.jobSkills == null or #lists.size(job.jobSkills) == 0}" colspan="4">No skills available</td>
-                        </tr>
+                        <!-- Nếu không có kỹ năng, hiển thị thông báo -->
+                        <td th:if="${job.jobSkills == null or #lists.size(job.jobSkills) == 0}" colspan="4">No skills available</td>
+                    </tr>
 
-                        <!-- Hiển thị các kỹ năng còn lại (nếu có) -->
-                        <tr th:each="skill, iterStat : ${job.jobSkills}">
-                            <td th:if="${iterStat.index > 0}" ></td>
-                            <td th:if="${iterStat.index > 0}" ></td>
-                            <td th:if="${iterStat.index > 0}" th:text="${skill.skill.skillName}"></td>
-                            <td th:if="${iterStat.index > 0}" th:text="${skill.skill.skillDescription}"></td>
-                            <td th:if="${iterStat.index > 0}" th:text="${skill.skill.type}"></td>
-                            <td th:if="${iterStat.index > 0}" th:text="${skill.moreInfos}"></td>
-                        </tr>
+                    <!-- Hiển thị các kỹ năng còn lại (nếu có) -->
+                    <tr th:each="skill, iterStat : ${job.jobSkills}">
+                        <td th:if="${iterStat.index > 0}" th:text="${skill.skill.skillName}"></td>
+                        <td th:if="${iterStat.index > 0}" th:text="${skill.skill.skillDescription}"></td>
+                        <td th:if="${iterStat.index > 0}" th:text="${skill.getSkillLevel().name()}"></td>
+                        <td th:if="${iterStat.index > 0}" th:text="${skill.moreInfos}"></td>
+                    </tr>
                     </tbody>
                 </table>
 
@@ -235,7 +490,6 @@
     </div>
 </div>
 
-<!-- The Modal -->
 <div class="modal fade" id="addJobModal" tabindex="-1" role="dialog" aria-labelledby="addJobModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -265,7 +519,7 @@
 
                     <!-- Job Skills -->
                     <div class="form-group">
-<!--                        <label for="jobSkills">Skills</label>-->
+                        <!--                        <label for="jobSkills">Skills</label>-->
                         <div id="jobSkillsContainer">
                             <div id="skills">
                                 <div class="row mb-2">
@@ -302,7 +556,6 @@
                 </form>
             </div>
 
-            <!-- Modal Footer -->
             <div class="modal-footer" >
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" form="addJobForm" class="btn btn-primary">Save Job</button>
@@ -311,14 +564,13 @@
     </div>
 </div>
 
-<!-- Modal for Adding Skill -->
 <div id="addSkillModal" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" aria-labelledby="addSkillModalLabel" >
     <div class="modal-dialog"  role="document">
         <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add Skill</h4>
-                </div>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Skill</h4>
+            </div>
             <form action="/skills/add" method="post">
 
                 <div class="modal-body">
@@ -372,7 +624,7 @@
         row.classList.add('row', 'mb-2');
         row.innerHTML = `
               <div class="col-md-6" style="display: flex; margin-top: 10px" >
-                <input placeholder="search skill" class="col-md-6" style="height: 35px; border-radius: 5px; " onchange="handleChangeTextSkill(event, 'select-skill-${index}'),''"/>
+                <input placeholder="search skill" class="col-md-6" style="height: 35px; border-radius: 5px; " onchange="handleChangeTextSkill(event, 'select-skill-${index}','skillDescription${index}')"/>
                 <select id="select-skill-${index}" class="form-control col-md-6" name="skills[${index}].id" required onchange="handleShowSkillDescription(event,'skillDescription${index}')">
                 <!-- Options dynamically generated -->
                 </select>
@@ -437,7 +689,7 @@
     }
     async function fetchSkills(name){
         try {
-            const response  = await fetch('http://localhost:8080/api/skills?name='+name);
+            const response  = await fetch('/api/skills?name='+name);
             if(!response.ok){
                 return[];
             }

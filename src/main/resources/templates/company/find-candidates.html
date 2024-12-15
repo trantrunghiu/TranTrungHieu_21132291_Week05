@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Candidates</title>
+    <title>CANDIDATE</title>
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -21,13 +21,123 @@ C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://i.imgur.com/PdQZdyG.png" type="image/png">
+    <style>
+        :root {
+            --primary-color: #ff8b8b;
+            --primary-dark: #ff5c5c;
+            --primary-light: #ffc1c1;
+            --text-color: #333;
+            --background-color: #fff5f5;
+        }
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h2 {
+            color: var(--primary-dark);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--primary-dark);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .back-link:hover {
+            color: var(--primary-color);
+        }
+        .table {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .table thead {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .table-hover tbody tr:hover {
+            background-color: var(--primary-light);
+        }
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination a {
+            color: var(--primary-color);
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            border: 1px solid #ddd;
+            margin: 0 4px;
+        }
+        .pagination a.active {
+            background-color: var(--primary-color);
+            color: white;
+            border: 1px solid var(--primary-color);
+        }
+        .pagination a:hover:not(.active) {
+            background-color: var(--primary-light);
+        }
+        .modal-header {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .modal-content {
+            border-radius: 8px;
+        }
+        .back-link {
+            background-color: #c2fbd7;
+            border-radius: 100px;
+            box-shadow: rgb(139, 37, 37) 0 -25px 18px -14px inset, rgb(139, 37, 37) 0 1px 2px, rgb(139, 37, 37) 0 2px 4px, rgb(139, 37, 37) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+            color: red;
+            cursor: pointer;
+            display: inline-block;
+            font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+            padding: 7px 20px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 250ms;
+            border: 0;
+            font-size: 16px;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        .back-link:hover {
+            box-shadow: rgb(139, 37, 37) 0 -25px 18px -14px inset, rgb(220, 9, 9) 0 1px 2px, rgb(251, 15, 15) 0 2px 4px, rgb(184, 67, 67) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
+            transform: scale(1.05) rotate(-1deg);
+        }
+    </style>
 </head>
 <body>
-<div th:switch="${candidates}">
+<div th:switch="${candidatePage}">
     <h2 th:case="null">No candidates yet!</h2>
     <div th:case="*" style="width: 90%; margin-left: 5%">
         <h2>Candidates</h2>
-        <a href="/">&#8678; Back</a>
+        <button class="back-link" role="button">
+            <a href="/">BACK</a>
+        </button>
         <table class="table table-hover">
             <thead>
             <tr>
@@ -42,7 +152,7 @@ C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             </tr>
             </thead>
             <tbody>
-            <tr th:each="candidate : ${candidates}">
+            <tr th:each="candidate: ${candidatePage}">
                 <td th:text="${candidate.id}"></td>
                 <td th:text="${candidate.fullName}"></td>
                 <td th:text="${candidate.dob}"></td>
@@ -53,18 +163,24 @@ C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
                     <button class="btn btn-default" th:onclick="'handleSeeMoreExperiences(' + ${candidate.id} + ')'">See</button>
                 </td>
                 <td>
-                    <button class="btn btn-default" th:onclick="">Send to</button>
+                    <button class="btn btn-default" th:onclick="'handleInviteCandidate('+${candidate.id}+','+${jobId}+')'">Send to</button>
+
                 </td>
             </tr>
             </tbody>
         </table>
+        <div class="inline" th:if="${candidatePage.totalPages > 0}" th:each="pageNumber :${pageNumbers}">
+            <a th:href="@{/company/find-candidates/page(size=${candidatePage.size}, page=${pageNumber}, jobId=${jobId})}"
+               th:text="${pageNumber}"
+               th:class="${pageNumber==candidatePage.number + 1} ? active"></a>
+        </div>
     </div>
     <div id="container"></div>
 
 </div>
 <script>
     async function fetchGetExperiences(candidateId) {
-        const response = await fetch('/company/get-experiences?candidateId=' + candidateId)
+        const response = await fetch(`/company/get-experiences?candidateId=${candidateId}`);
         if (!response.ok) {
             return [];
         }
@@ -128,6 +244,15 @@ C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
                 `
 
             }
+        }
+    }
+    async function handleInviteCandidate(candidateId,jobId){
+        const response = await fetch(`/company/invite-candidate?candidateId=${candidateId}&jobId=${jobId}`)
+        if(response.ok){
+            const data = await response.json()
+            alert(data.status)
+        }else{
+            alert("Invite fail.")
         }
     }
 

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap"
           rel="stylesheet">
+
 </head>
 <body>
 <div class="navbar">
@@ -62,9 +63,8 @@
             </div>
         </div>
         <div>
-            <a href="#">
-                Đăng ký/Đăng nhập
-            </a>
+            <a href="/logout">
+                Đăng Xuất </a>
         </div>
         <div>
             <a href="#" id="employerButton">
@@ -170,8 +170,8 @@
     </div>
 </div>
 <div class="snow">
-    <div class="choose-role-menu" onclick="redirectToRole({value: 'candidate'})">
-        <div class="e-card playing">
+    <div class="choose-role-menu">
+        <div class="e-card playing" onclick="redirectToRole({value: 'candidate'})">
             <div class="image"></div>
             <div class="wave"></div>
             <div class="wave"></div>

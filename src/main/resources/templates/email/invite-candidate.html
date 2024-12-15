@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOB INVITE EMAIL</title>
+</head>
+<body style="font-family: 'Arial', sans-serif; background-color: #f6f9fc; margin: 0; padding: 0;">
+<div style="max-width: 600px; margin: 20px auto; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); overflow: hidden;">
+    <div style="background-color: #4285f4; background-image: linear-gradient(135deg, #4285f4, #34a853); color: #ffffff; padding: 30px; text-align: center;">
+        <h1 style="margin: 0; font-size: 28px; font-weight: 700;">{{companyName}} - Job Invitation</h1>
+    </div>
+    <div style="padding: 30px; color: #333333;">
+        <p style="line-height: 1.6; margin: 15px 0; font-size: 16px;">Dear Candidate,</p>
+        <p style="line-height: 1.6; margin: 15px 0; font-size: 16px;">We are excited to invite you to apply for the position of <strong style="color: #4285f4;">{{jobTitle}}</strong> at <strong style="color: #4285f4;">{{companyName}}</strong>. Below are the job details:</p>
+        <div style="margin: 30px 0; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; background-color: #f9f9f9;">
+            <h2 style="margin: 0 0 20px; font-size: 22px; color: #4285f4;">Job Details</h2>
+            <p style="margin: 10px 0; font-size: 16px; color: #555555;"><strong style="color: #333333;">Description:</strong> {{jobDescription}}</p>
+            <h3 style="margin: 20px 0 10px; font-size: 18px; color: #4285f4;">Skills Required</h3>
+            <table style="width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 10px;">
+                <thead>
+                <tr style="background-color: #4285f4;">
+                    <th style="padding: 12px; border: 1px solid #4285f4; text-align: left; color: #ffffff; font-weight: 600;">Skill Name</th>
+                    <th style="padding: 12px; border: 1px solid #4285f4; text-align: left; color: #ffffff; font-weight: 600;">Description</th>
+                    <th style="padding: 12px; border: 1px solid #4285f4; text-align: left; color: #ffffff; font-weight: 600;">Type</th>
+                    <th style="padding: 12px; border: 1px solid #4285f4; text-align: left; color: #ffffff; font-weight: 600;">More Info</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{jobSkills}}
+                </tbody>
+            </table>
+        </div>
+        <p style="line-height: 1.6; margin: 15px 0; font-size: 16px;">We look forward to receiving your application!</p>
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="#" style="display: inline-block; background-color: #4285f4; color: #ffffff; text-decoration: none; padding: 14px 30px; border-radius: 50px; font-weight: bold; font-size: 16px; transition: background-color 0.3s ease;">Apply Now</a>
+        </div>
+    </div>
+    <div style="text-align: center; padding: 20px; font-size: 14px; color: #888888; background-color: #f6f9fc; border-top: 1px solid #e0e0e0;">
+        <p style="margin: 5px 0;">This email was sent by {{companyName}}.</p>
+        <p style="margin: 5px 0;">Need help? <a href="mailto:support@{{companyName}}.com" style="color: #4285f4; text-decoration: none;">Contact Us</a></p>
+    </div>
+</div>
+</body>
+</html>

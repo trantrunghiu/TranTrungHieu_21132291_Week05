@@ -21,7 +21,7 @@ public class Address {
     @Column(name = "city", length = 50)
     private String city;
 
-    @Column(name = "country", length = 30,columnDefinition = "SMALLINT")
+    @Column(name = "country", length = 30, columnDefinition = "SMALLINT")
     private CountryCode country = CountryCode.VN;
 
     @Column(name = "number", length = 20)
@@ -29,6 +29,7 @@ public class Address {
 
     @Column(name = "zipcode", length = 7)
     private String zipcode;
+
     public Address(String number, String street, String city, String zipcode, CountryCode country) {
         this.number = number;
         this.street = street;
@@ -36,5 +37,7 @@ public class Address {
         this.zipcode = zipcode;
         this.country = country;
     }
-    public Address(){}
+
+    public Address() {
+    }
 }

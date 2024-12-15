@@ -12,6 +12,7 @@ public class CountryCodeConverter implements AttributeConverter<CountryCode, Sho
         if (countryCode == null) {
             return null;
         }
+        // Lấy mã numeric của quốc gia
         return (short) countryCode.getNumeric();
     }
 
@@ -20,11 +21,12 @@ public class CountryCodeConverter implements AttributeConverter<CountryCode, Sho
         if (dbData == null) {
             return null;
         }
+        // Lấy CountryCode từ mã numeric
         for (CountryCode countryCode : CountryCode.values()) {
             if (countryCode.getNumeric() == dbData) {
                 return countryCode;
             }
         }
-        return null;
+        return null; // Trả về null nếu không tìm thấy
     }
 }

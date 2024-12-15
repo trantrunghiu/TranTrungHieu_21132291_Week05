@@ -28,12 +28,14 @@ public class CandidateNoAuthController {
         return "candidates/candidates";
     }
     @GetMapping("/candidates")
-    public String showCandidatesListPaging(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
+    public String showCandidateListPaging(Model model,
+                                          @RequestParam("page") Optional<Integer> page,
+                                          @RequestParam("size") Optional<Integer> size) {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(10);
-        Page<Candidate> candidates = candidateService.findAll(currentPage - 1, pageSize, "id", "asc");
-        model.addAttribute("candidates", candidates);
-        int totalPages = candidates.getTotalPages();
+        Page<Candidate> candidatePage= candidateService.findAll(currentPage - 1,pageSize,"id","asc");
+        model.addAttribute("candidatePage", candidatePage);
+        int totalPages = candidatePage.getTotalPages();
         if (totalPages > 0) {
             List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
                     .boxed()
