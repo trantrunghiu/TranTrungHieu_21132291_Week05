@@ -14,7 +14,7 @@ Check out the [PPT FILE ABOUT INTO ABOUT WEB](https://docs.google.com/presentati
 
 Check out the [SQL FILE TO CREATE DATA](https://drive.google.com/file/d/1--kgHzxzwE34oiYVVtBA3qMVjcIKxj8L/view?usp=drive_link).
 
-Check out the [VIDEO DEMO FILE]([https://drive.google.com/file/d/1--kgHzxzwE34oiYVVtBA3qMVjcIKxj8L/view?usp=drive_link](https://drive.google.com/file/d/1zceoe7Aumy7JkWMF3AXj3ch3bexOMmcX/view?usp=sharing)).
+Check out the [VIDEO DEMO FILE](https://drive.google.com/file/d/1zceoe7Aumy7JkWMF3AXj3ch3bexOMmcX/view?usp=sharing).
 
 # Job Posting Web Application
 
