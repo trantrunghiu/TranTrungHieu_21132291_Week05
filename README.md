@@ -1,34 +1,128 @@
-# Introduction to the Web
+# Job Posting Web Application
 
-## Overview
-This repository contains the projects and assignments for the "Introduction to the Web" course. The course covers various fundamental topics related to web development.
+This is a Java Spring Boot-based web application for managing job postings. It allows employers to post jobs and manage applications, while job seekers can browse and apply for jobs. 
 
-## Key Topics
-- **HTML**: Structure of web pages, elements, attributes, and best practices.
-- **CSS**: Styling web pages, selectors, properties, and responsive design.
-- **JavaScript**: Adding interactivity to web pages, basic syntax, DOM manipulation, and event handling.
-- **Web Development Tools**: Overview of tools such as text editors, version control systems, and browser developer tools.
+## Features
 
-## Projects
-1. **Project 1: Basic HTML Page**
-   - Description: Creating a simple HTML page with text, images, and links.
-   - Files: `index.html`
+- OAuth2 login (Google Sign-In)
+- RESTful APIs for job and user management
+- Dynamic content rendering with Thymeleaf
+- Secure user authentication and role-based access control
+- Email notifications using Google Gmail API
+- Internationalization support
+- Validation for form inputs
+- Database integration with MariaDB
+- Developer-friendly tools like Lombok and Spring DevTools
 
-2. **Project 2: Styling with CSS**
-   - Description: Applying styles to the HTML page using CSS.
-   - Files: `styles.css`
+## Demo
 
-3. **Project 3: Interactive Web Page**
-   - Description: Adding interactivity to the web page using JavaScript.
-   - Files: `script.js`
+Check out the [video demo on YouTube](https://youtu.be/gcmjH-mjqhA).
 
-## How to Use This Repository
-- Clone the repository: `git clone https://github.com/trantrunghiu/TranTrungHieu_21132291_Week05.git`
-- Navigate to the project directory: `cd TranTrungHieu_21132291_Week05`
-- Open the HTML files in a web browser to view the projects.
+## Technologies and Libraries Used
 
-## Contributions
-Contributions are welcome! Please fork the repository and submit a pull request with your changes.
+- **Spring Boot**:
+  - `spring-boot-starter-oauth2-client`: OAuth2 client integration
+  - `spring-boot-starter-data-jpa`: JPA for database interaction
+  - `spring-boot-starter-data-rest`: Building RESTful APIs
+  - `spring-boot-starter-security`: Authentication and security
+  - `spring-boot-starter-web`: Web application development
+  - `spring-boot-starter-web-services`: SOAP web services
+  - `spring-boot-starter-thymeleaf`: Server-side HTML rendering
+  - `spring-boot-starter-validation`: Data validation
+  - `spring-boot-starter-mail`: Email support
+  - `spring-boot-starter-jdbc`: JDBC support
+
+- **Google Libraries**:
+  - `google-auth-library-oauth2-http`: OAuth2 authentication
+  - `google-api-client`: Google APIs client library
+  - `google-oauth-client-jetty`: OAuth2 client with Jetty integration
+  - `google-api-services-gmail`: Gmail API integration
+
+- **JSON Web Token (JWT)**:
+  - `jjwt-api`, `jjwt-impl`, `jjwt-jackson`: JWT support for secure token handling
+
+- **Other Libraries**:
+  - `nv-i18n`: Internationalization utilities
+  - `mail`: JavaMail API
+  - `mariadb-java-client`: MariaDB database connector
+  - `gretty`: Web application server for development
+
+- **Development Tools**:
+  - `lombok`: Simplified Java development with annotations
+  - `spring-boot-devtools`: Hot reload and development enhancements
+
+- **Testing**:
+  - `spring-boot-starter-test`: Testing framework
+  - `spring-security-test`: Security testing utilities
+  - `junit-platform-launcher`: JUnit integration
+
+## Requirements
+
+- Java 17 or later
+- MariaDB or compatible database
+- Gmail API credentials for email functionality
+
+## Getting Started
+
+### Clone the Repository
+
+```bash
+https://github.com/yourusername/job-posting-webapp.git
+cd job-posting-webapp
+```
+
+### Setup Database
+
+1. Install MariaDB and create a database.
+2. Update `application.properties` with your database credentials:
+
+```properties
+spring.datasource.url=jdbc:mariadb://localhost:3306/your_database
+spring.datasource.username=your_username
+spring.datasource.password=your_password
+```
+
+### Configure Gmail API
+
+1. Obtain Gmail API credentials from Google Cloud Console.
+2. Place the credentials file in `src/main/resources` and update the path in `application.properties`:
+
+```properties
+gmail.credentials.path=src/main/resources/credentials.json
+```
+
+### Run the Application
+
+Use the following command to start the application:
+
+```bash
+./mvnw spring-boot:run
+```
+
+The application will be available at [http://localhost:8080](http://localhost:8080).
+
+## Documentation
+
+Refer to the following documentation for more details:
+
+- [Project Overview](docs/project-overview.md)
+- [API Endpoints](docs/api-endpoints.md)
+- [Database Schema](docs/database-schema.md)
+- [Deployment Guide](docs/deployment-guide.md)
+
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Commit your changes and push the branch.
+4. Create a pull request.
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+For any questions or suggestions, feel free to reach out at your_email@example.com.
